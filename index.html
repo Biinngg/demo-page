@@ -7,10 +7,15 @@
 <body>
 
     <h1>This is a template for the ads conversion page with an insight tag.</h1>
+    <button id="trackButton">Track Conversion</button>
 
     <footer>
         <script type="text/javascript">
-        _linkedin_partner_id = "6235289";
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('trackButton').addEventListener('click', function() {
+            window.lintrk('track', { conversion_id: params.get('conversion_id') });
+        });
+        _linkedin_partner_id = params.get('pid');
         window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
         window._linkedin_data_partner_ids.push(_linkedin_partner_id);
         </script>
@@ -24,9 +29,6 @@
         b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
         s.parentNode.insertBefore(b, s);})(window.lintrk);
         </script>
-        <noscript>
-        <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=6235289&fmt=gif" />
-        </noscript>
     </footer>
 
 </body>
